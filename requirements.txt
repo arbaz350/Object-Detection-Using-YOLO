@@ -1,5 +1,5 @@
 streamlit==1.38.0
-ultralytics==8.2.50
+ultralytics==8.3.217 
 pillow
 torch
 torchvision
