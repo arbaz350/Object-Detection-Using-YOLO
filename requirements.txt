@@ -1,4 +1,3 @@
-python_version
 ultralytics
 opencv-python-headless
 streamlit
