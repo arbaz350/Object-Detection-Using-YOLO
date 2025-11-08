@@ -1,8 +1,8 @@
-python_version == 3.10
-ultralytics==8.2.100
-opencv-python-headless==4.10.0.84
-streamlit==1.38.0
-torch>=2.0.0
-torchvision>=0.15.0
+python_version
+ultralytics
+opencv-python-headless
+streamlit
+torch
+torchvision
 numpy
 Pillow
