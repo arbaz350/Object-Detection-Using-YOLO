@@ -4,3 +4,4 @@ torch
 torchvision
 opencv-python-headless
 pillow
+python_version == 3.10
