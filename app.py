@@ -14,15 +14,18 @@ import cv2
 # ------------------------------------------------------------
 # Streamlit UI
 # ------------------------------------------------------------
-st.title("🦾 YOLO Object Detection Web App")
-st.write("Upload an image to detect objects using your trained YOLOv8 model.")
+st.title("🦾 YOLO Object Detection")
+st.write("Upload an image to detect objects using a YOLO model.")
 
 # ------------------------------------------------------------
-# Load YOLO model
+# Load YOLO model FROM HUGGINGFACE URL
 # ------------------------------------------------------------
+
+HF_MODEL_URL = "https://huggingface.co/arbajshaikh880/yolo_model/resolve/main/best.pt"
+
 @st.cache_resource
 def load_model():
-    return YOLO("best.pt")  # Make sure best.pt is in same folder or give full path
+    return YOLO(HF_MODEL_URL)  # loads from HuggingFace
 
 model = load_model()
 
@@ -37,13 +40,13 @@ if uploaded_file is not None:
 
     if st.button("🚀 Detect Objects"):
         with st.spinner("Detecting..."):
-            # Save uploaded image to a temp file
+            # Save uploaded image to a temporary file
             with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as tmp:
                 image.save(tmp.name)
                 results = model.predict(source=tmp.name, save=False, conf=0.25)
 
-            # Visualize detections
-            result_img = results[0].plot()  # BGR image
+            # Plot detection results
+            result_img = results[0].plot()  # BGR
             result_img_rgb = cv2.cvtColor(result_img, cv2.COLOR_BGR2RGB)
 
             st.image(result_img_rgb, caption="🎯 Detection Result", use_column_width=True)
